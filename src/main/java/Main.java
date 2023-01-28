@@ -2,26 +2,28 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean isContinue=true;
+        while(isContinue) {
         /*
         4*4的大小为2
         9*9的大小为3
         16*16的大小为4
         以此类推...
          */
-        ArrayList<myPoint> points = new ArrayList<myPoint>();
-        System.out.println("请输入大小");
-        Scanner scanner = new Scanner(System.in);
-        int size = (int) scanner.next().charAt(0)-48;
+            ArrayList<myPoint> points = new ArrayList<myPoint>();
+            System.out.println("请输入大小");
+            int size = (int) scanner.next().charAt(0) - 48;
 
-        //创建初始点列
-        for(int i = 0; i < size*size; i ++){
-            for(int j = 0; j < size*size; j ++){
-                myPoint p = new myPoint(i,j,-1,0);
-                points.add(p);
+            //创建初始点列
+            for (int i = 0; i < size * size; i++) {
+                for (int j = 0; j < size * size; j++) {
+                    myPoint p = new myPoint(i, j, -1, 0);
+                    points.add(p);
+                }
             }
-        }
 
-        Line line = new Line(points);
+            Line line = new Line(points);
 
         /*
         划分区域，对于一般数独而言，区域序号为
@@ -46,14 +48,14 @@ public class Main {
         666758888
         667777888
          */
-        System.out.println("请输入区域");
-        for(int i = 0; i <  size*size; i ++) {
-            String s = scanner.next();
-            for(int j = 0; j <  size*size; j ++){
-                myPoint mp = line.getPoint(i,j);
-                mp.z = (int) s.charAt(j)-48;
+            System.out.println("请输入区域");
+            for (int i = 0; i < size * size; i++) {
+                String s = scanner.next();
+                for (int j = 0; j < size * size; j++) {
+                    myPoint mp = line.getPoint(i, j);
+                    mp.z = (int) s.charAt(j) - 48;
+                }
             }
-        }
 
         /*输入初始值，空的为0，输入9*9的String
         例如:
@@ -67,24 +69,30 @@ public class Main {
         006050900
         000002000
          */
-        System.out.println("请输入初始值");
-        for(int i = 0; i < size*size; i ++) {
-            String s = scanner.next();
-            for(int j = 0; j < size*size; j ++){
-                if((int)s.charAt(j)-48 != 0) {
-                    myPoint mp = line.getPoint(i, j);
-                    mp.value = (int) s.charAt(j) - 48;
+            System.out.println("请输入初始值");
+            for (int i = 0; i < size * size; i++) {
+                String s = scanner.next();
+                for (int j = 0; j < size * size; j++) {
+                    if ((int) s.charAt(j) - 48 != 0) {
+                        myPoint mp = line.getPoint(i, j);
+                        mp.value = (int) s.charAt(j) - 48;
+                    }
                 }
             }
+
+            long millis1 = System.currentTimeMillis();
+            Square z = new Square(points);
+            backTrace bt = new backTrace(z);
+            myPoint mp = bt.getMostInfoPoint();
+            bt.infoTrace(mp);
+            System.out.println(bt.square.output());
+            long millis2 = System.currentTimeMillis();
+            long time = millis2 - millis1;//经过的毫秒数
+            System.out.println("时间:" +(double)time / 1000);
+
+            System.out.println("是否退出,Y/N");
+            isContinue = scanner.next()=="N"?false:true;
         }
 
-        long millis1 = System.currentTimeMillis();
-        Square z= new Square(points);
-        backTrace bt=new backTrace(z);
-        myPoint mp = bt. getMostInfoPoint();
-        bt.infoTrace(mp);
-        long millis2 = System.currentTimeMillis();
-        long time=millis2-millis1;//经过的毫秒数
-        System.out.println("时间:"+time/1000);
     }
 }

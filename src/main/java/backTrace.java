@@ -27,7 +27,7 @@ public class backTrace {
             nextY=y;
             if(canSet(x,y,i)){
                 this.square.setValue(x,y,i);
-                System.out.println(this.square.output());
+/*                System.out.println(this.square.output());*/
                 do{
                     nextY++;
                     if(nextY==maxY){
@@ -54,7 +54,7 @@ public class backTrace {
             getvalueSet(mp);
             if(canSet(mp,i)){
                 this.square.setValue(mp,i);
-                System.out.println(this.square.output());
+          /*      System.out.println(this.square.output());*/
                 //搜索信息量最大的点
                 myPoint newPoint = this.getMostInfoPoint();
                 if(newPoint == null)
