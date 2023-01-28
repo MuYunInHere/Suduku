@@ -85,6 +85,7 @@ public class Main {
             backTrace bt = new backTrace(z);
             myPoint mp = bt.getMostInfoPoint();
             bt.infoTrace(mp);
+            System.out.println("答案来啦:");
             System.out.println(bt.square.output());
             long millis2 = System.currentTimeMillis();
             long time = millis2 - millis1;//经过的毫秒数
