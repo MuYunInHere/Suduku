@@ -27,11 +27,11 @@ public class Square extends Line{
                  col.add(cmp);
             }
             s.add(new Line(zr));
-            this.zones.add(new row(zr));
+            this.zones.add(new row(zr,3));
             s.add(new Line(row));
-            this.rows.add(new row(row));
+            this.rows.add(new row(row,1));
             s.add(new Line(col));
-            this.cols.add(new row(col));
+            this.cols.add(new row(col,2));
         }
 
         return s;

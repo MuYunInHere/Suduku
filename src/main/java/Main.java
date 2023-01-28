@@ -57,6 +57,8 @@ public class Main {
                 }
             }
 
+
+
         /*输入初始值，空的为0，输入9*9的String
         例如:
         000000000
@@ -90,6 +92,7 @@ public class Main {
             long millis2 = System.currentTimeMillis();
             long time = millis2 - millis1;//经过的毫秒数
             System.out.println("时间:" +(double)time / 1000);
+
 
             System.out.println("是否退出,Y/N");
             isContinue = scanner.next()=="N"?false:true;
